@@ -57,18 +57,20 @@ class App extends React.Component {
     const value = event.currentTarget.value;
 
     this.setState((prevState, index) => {
-
+      
+      let newArr;
       if (this.state.filters.selectedCities.includes(value)) {
         const ind = this.state.filters.selectedCities.indexOf(value);
         this.state.filters.selectedCities.splice(ind, 1);
+        newArr = this.state.filters.selectedCities;
       } else {
-        this.state.filters.selectedCities.push(value);
+        newArr = this.state.filters.selectedCities.concat(value);
       }
 
       return {
         filters: {
           ...prevState.filters,
-          selectedCities: this.state.filters.selectedCities,
+          selectedCities: newArr,
         }
       }
     })
@@ -79,17 +81,19 @@ class App extends React.Component {
 
     this.setState((prevState, index) => {
 
+      let newArr;
       if (this.state.filters.selectedGenders.includes(value)) {
         const ind = this.state.filters.selectedGenders.indexOf(value);
         this.state.filters.selectedGenders.splice(ind, 1);
+        newArr = this.state.filters.selectedGenders;
       } else {
-        this.state.filters.selectedGenders.push(value);
+        newArr = this.state.filters.selectedGenders.concat(value);
       }
 
       return {
         filters: {
           ...prevState.filters,
-          selectedGenders: this.state.filters.selectedGenders,
+          selectedGenders: newArr,
         }
       }
     })
